@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>沈先生 · 美食摄影与影像创作</title>
+  <meta name="description" content="沈先生，成都美食摄影师、编导、导演、剪辑与调色。用镜头讲述食物的故事。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+
+  <header class="nav" id="top">
+    <a class="nav__logo" href="#top">沈先生</a>
+    <nav class="nav__links" id="nav-links" aria-label="主导航">
+      <a href="#work">作品</a>
+      <a href="#film">影像</a>
+      <a href="#about">关于</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <button class="nav__toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="开场">
+      <div class="hero__copy">
+        <p class="eyebrow reveal" data-delay="0">Ember Lacquer</p>
+        <p class="hero__en reveal-lines" data-delay="120">
+          <span class="line"><span>Light held at the</span></span>
+          <span class="line"><span>edge of a plate.</span></span>
+        </p>
+        <h1 class="hero__title reveal-lines" data-delay="280">
+          <span class="line"><span>用镜头讲述</span></span>
+          <span class="line"><span>食物的故事</span></span>
+        </h1>
+        <p class="hero__sign reveal" data-delay="720">我是沈先生。</p>
+      </div>
+      <figure class="hero__portrait">
+        <img
+          src="assets/character-portrait.jpg"
+          alt="沈先生三维形象半身肖像，黑色高领与外套，暖色轮廓光"
+          width="864"
+          height="1152"
+          fetchpriority="high"
+        />
+      </figure>
+    </section>
+
+    <section class="thread" aria-label="形象">
+      <figure class="thread__figure">
+        <img
+          src="assets/character-hero.jpg"
+          alt="沈先生三维形象全身立像，深色工作室，肩挂相机"
+          width="864"
+          height="1152"
+          loading="lazy"
+        />
+      </figure>
+      <div class="thread__copy reveal-up">
+        <p class="eyebrow">Character</p>
+        <h2>光影、食物与影像。</h2>
+        <p>从灯下的一盘，到屏幕上的一度，再到桌上的一餐。</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="film">
+      <figure class="chapter__media">
+        <img
+          class="chapter__poster"
+          src="assets/scene-studio.jpg"
+          alt="拍摄现场：在钨丝灯下为烤炙菜品布光"
+          width="1280"
+          height="720"
+        />
+        <video
+          id="onset-video"
+          class="chapter__video"
+          poster="assets/scene-studio.jpg"
+          muted
+          playsinline
+          preload="metadata"
+          width="1600"
+          height="906"
+        >
+          <source src="assets/hero-loop-web.mp4" type="video/mp4" />
+        </video>
+        <button class="chapter__replay" type="button" hidden>重播</button>
+      </figure>
+      <div class="chapter__copy">
+        <p class="chapter__index">01</p>
+        <p class="eyebrow">On Set</p>
+        <h2>拍摄</h2>
+        <p>先把光找对。</p>
+        <p>策划、分镜，再到现场的一盏灯。</p>
+      </div>
+    </section>
+
+    <section class="chapter chapter--grade">
+      <figure class="chapter__media">
+        <img
+          src="assets/scene-grade.jpg"
+          alt="调色台前，屏幕上是一只上色完成的烤禽"
+          width="1280"
+          height="720"
+          loading="lazy"
+        />
+      </figure>
+      <div class="chapter__copy">
+        <p class="chapter__index">02</p>
+        <p class="eyebrow">After Hours</p>
+        <h2>影像</h2>
+        <p>剪辑是节奏，调色是呼吸。</p>
+        <p>在夜色里，把温度留在画面上。</p>
+      </div>
+    </section>
+
+    <section class="chapter chapter--table">
+      <figure class="chapter__media">
+        <img
+          src="assets/scene-table.jpg"
+          alt="深夜餐厅，一碗热气升腾的面点摆在桌前"
+          width="1280"
+          height="720"
+          loading="lazy"
+        />
+      </figure>
+      <div class="chapter__copy chapter__copy--right">
+        <p class="chapter__index">03</p>
+        <p class="eyebrow">The Table</p>
+        <h2>餐桌</h2>
+        <p>食物被端上桌的那一刻。</p>
+        <p>镜头的尽头，是一张桌子。</p>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="work__head reveal-up">
+        <p class="eyebrow">Photography</p>
+        <h2>作品</h2>
+      </div>
+      <div class="work__grid">
+        <article class="work__item work__item--tall">
+          <img
+            src="assets/dish-steam.jpg"
+            alt="热气升腾的一碗红油面，浅景深静物"
+            width="864"
+            height="1152"
+            loading="lazy"
+          />
+          <div class="work__meta">
+            <span>Steam</span>
+            <strong>热气</strong>
+          </div>
+        </article>
+        <article class="work__item work__item--lacquer">
+          <img
+            src="assets/dish-lacquer.jpg"
+            alt="漆光烤皮特写，焦糖色泽与蒸汽"
+            width="1152"
+            height="864"
+            loading="lazy"
+          />
+          <div class="work__meta">
+            <span>Lacquer</span>
+            <strong>漆光</strong>
+          </div>
+        </article>
+        <article class="work__item work__item--wide">
+          <img
+            src="assets/dish-table.jpg"
+            alt="暗光餐桌，多道菜品围桌摆放"
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+          <div class="work__meta">
+            <span>Table</span>
+            <strong>围桌</strong>
+          </div>
+        </article>
+      </div>
+      <p class="work__note">本组为风格参考画面 / 视觉方向，正式作品可替换为实地拍摄的照片与视频。</p>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about__grid">
+        <div class="about__copy reveal-up">
+          <p class="eyebrow">About</p>
+          <h2>沈现周</h2>
+          <p class="about__lead">成都 · 美食摄影与影像</p>
+          <p>美食摄影师，编导 / 导演 / 摄影师 / 剪辑师 / 调色师。影像工作约九年。</p>
+          <p>2021 年 7 月起任职四川荟东方餐饮集团，服务南堂馆等品牌。独立完成宣传片从策划、分镜、拍摄到剪辑调色的全流程；主导拍摄超 200 道菜品主视觉与动态视频；负责抖音、视频号与二十四节气内容，并跟拍新品发布、周年庆与开业现场。</p>
+          <p>亦承担品牌菜品照片（新店与季节菜品），以及抖音来客套餐、大众点评套餐与门店平板点餐等内容运营。工作中会使用 AI 辅助写脚本、替换菜品照片背景、生成短片。</p>
+          <p class="about__tools">Sony A7M4 · DaVinci Resolve · Premiere · After Effects · 4K HDR</p>
+        </div>
+        <ul class="about__roles" aria-label="工作角色">
+          <li>美食摄影</li>
+          <li>编导 / 导演</li>
+          <li>摄影师</li>
+          <li>剪辑师</li>
+          <li>调色师</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact__inner reveal-up">
+        <p class="eyebrow">Contact</p>
+        <h2>接洽咨询</h2>
+        <p class="contact__lead">拍摄、短片与品牌影像，欢迎来信。</p>
+        <div class="contact__layout">
+          <ul class="contact__details">
+            <li>
+              <span>邮箱</span>
+              <a href="mailto:185204359@qq.com">185204359@qq.com</a>
+            </li>
+            <li>
+              <span>电话</span>
+              <a href="tel:18280476826">182 8047 6826</a>
+            </li>
+            <li>
+              <span>城市</span>
+              <p>成都</p>
+            </li>
+          </ul>
+          <form class="contact__form" id="inquire" action="mailto:185204359@qq.com" method="post" enctype="text/plain">
+            <label>
+              称呼
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              留言
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+            <button class="btn" type="submit">写信咨询</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 沈先生</p>
+    <a href="#top">回到顶部</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
