@@ -58,71 +58,117 @@ export const character = {
   },
 };
 
+export type ExpressionId = "default" | "direct" | "shoot" | "edit" | "grade";
+
+export type Expression = {
+  id: ExpressionId;
+  jpg: string;
+  webp: string;
+  alt: string;
+};
+
+const expression = (id: ExpressionId, name: string, alt: string): Expression => ({
+  id,
+  jpg: asset(`assets/character/${name}.jpg`),
+  webp: asset(`assets/character/${name}.webp`),
+  alt,
+});
+
+export const expressions: Record<ExpressionId, Expression> = {
+  default: expression(
+    "default",
+    "shen-expr-default",
+    "沈现周的预先渲染半身形象，黑色高领与外套，手按在衣襟，银色开口吊坠",
+  ),
+  direct: expression(
+    "direct",
+    "shen-expr-direct",
+    "沈现周的预先渲染半身形象，抬手置于胸前，对应导演",
+  ),
+  shoot: expression(
+    "shoot",
+    "shen-expr-photo",
+    "沈现周的预先渲染半身形象，手持相机对着镜头，对应摄影",
+  ),
+  edit: expression(
+    "edit",
+    "shen-expr-edit",
+    "沈现周的预先渲染半身形象，手托住下巴，目光朝下，对应剪辑",
+  ),
+  grade: expression(
+    "grade",
+    "shen-expr-grade",
+    "沈现周的预先渲染半身形象，正视镜头，对应调色",
+  ),
+};
+
+export type CraftId = Exclude<ExpressionId, "default">;
+
+export const crafts: { id: CraftId; number: string; title: string; body: string }[] = [
+  {
+    id: "direct",
+    number: "01",
+    title: "导演",
+    body: "策划、分镜，再到现场。宣传片从这里开拍。",
+  },
+  {
+    id: "shoot",
+    number: "02",
+    title: "摄影",
+    body: "菜品与现场。新店、季节菜，以及端上桌的那一盘。",
+  },
+  {
+    id: "edit",
+    number: "03",
+    title: "剪辑",
+    body: "把拍回来的素材剪成成片的结构。",
+  },
+  {
+    id: "grade",
+    number: "04",
+    title: "调色",
+    body: "收拾颜色和质感。",
+  },
+];
+
+export const methodSteps = [
+  { number: "01", title: "策划分镜", body: "先做策划和分镜，把要拍的定下来。" },
+  { number: "02", title: "拍摄用光", body: "拍摄菜品与现场，把光用在食物上。" },
+  { number: "03", title: "剪辑结构", body: "按成片需要的结构来剪。" },
+  { number: "04", title: "调色质感", body: "最后收拾颜色和质感。" },
+];
+
 export const films = [
   { index: "01", href: "https://www.xinpianchang.com/a13871490" },
   { index: "02", href: "https://www.xinpianchang.com/a13871473" },
   { index: "03", href: "https://www.xinpianchang.com/a13871467" },
 ] as const;
 
+export type WorkCase =
+  | { kind: "photo"; photoIndex: number }
+  | { kind: "film"; index: string; href: string };
+
+export const cases: WorkCase[] = [
+  ...photos.map((_, photoIndex) => ({ kind: "photo" as const, photoIndex })),
+  ...films.map((film) => ({ kind: "film" as const, index: film.index, href: film.href })),
+];
+
 export const profileHref = XINPIANCHANG;
 
-export const aboutParagraphs = [
-  "美食摄影师，编导 / 导演 / 摄影师 / 剪辑师 / 调色师。影像工作约九年。",
-  "2021 年 7 月起任职四川荟东方餐饮集团，服务南堂馆等品牌。独立完成宣传片从策划、分镜、拍摄到剪辑调色的全流程；主导拍摄超 200 道菜品主视觉与动态视频；负责抖音、视频号与二十四节气内容，并跟拍新品发布、周年庆与开业现场。",
-  "亦承担品牌菜品照片（新店与季节菜品），以及抖音来客套餐、大众点评套餐与门店平板点餐等内容运营。工作中会使用 AI 辅助写脚本、替换菜品照片背景、生成短片。",
-];
-
-export const tools = "Sony A7M4 · DaVinci Resolve · Premiere · After Effects · 4K HDR";
-
-export const services = [
-  {
-    number: "01",
-    title: "导演",
-    body: "策划、分镜，再到现场的一盏灯。宣传片从策划走到开拍。",
-  },
-  {
-    number: "02",
-    title: "摄影",
-    body: "菜品与现场的拍摄。新店、季节菜品，以及端上桌的那一盘。",
-  },
-  {
-    number: "03",
-    title: "剪辑",
-    body: "剪辑是节奏。",
-  },
-  {
-    number: "04",
-    title: "调色",
-    body: "调色是呼吸。在夜色里，把温度留在画面上。",
-  },
-];
-
-export type Medium = "photos" | "video";
-
-export type Category = {
-  id: string;
-  label: string;
-  populated: boolean;
+export const about = {
+  opening: "我是沈现周。",
+  place: "成都。影像工作约九年。",
+  role: "美食摄影师，编导、导演、摄影师、剪辑与调色。",
+  practice:
+    "任职四川荟东方餐饮集团，服务南堂馆。宣传片从策划、分镜、拍摄到剪辑、调色，自己做完整条流程。菜品主视觉，以及二十四节气内容。",
+  tools: "Sony A7M4 · DaVinci Resolve · Premiere · After Effects",
+  output: "可输出 4K HDR",
 };
 
-export const photoCategories: Category[] = [
-  { id: "portrait", label: "人像", populated: false },
-  { id: "city", label: "风光 · 城市", populated: false },
-  { id: "food", label: "美食", populated: true },
-  { id: "product", label: "商业 · 产品", populated: false },
-  { id: "street", label: "纪实 · 街拍", populated: false },
-];
-
-export const videoCategories: Category[] = [
-  { id: "ads", label: "广告 · 宣传片", populated: false },
-  { id: "docs", label: "纪录片 · 微电影", populated: false },
-  { id: "shorts", label: "短视频", populated: false },
-  { id: "dining", label: "美食 · 餐饮", populated: true },
-];
-
 export const navLinks = [
-  { href: "#work", id: "work", label: "作品" },
   { href: "#services", id: "services", label: "服务" },
-  { href: "#about", id: "about", label: "关于我" },
+  { href: "#work", id: "work", label: "作品" },
+  { href: "#about", id: "about", label: "关于" },
+  { href: "#method", id: "method", label: "方法" },
   { href: "#contact", id: "contact", label: "联系" },
 ];

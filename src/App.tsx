@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { EMAIL, MAILTO } from "./asset";
 import { About } from "./About";
-import { Carousel } from "./Carousel";
-import { Catalog } from "./Catalog";
+import { Contact } from "./Contact";
+import { Craft } from "./Craft";
 import { Hero } from "./Hero";
 import { Lightbox } from "./Lightbox";
-import { Marquee } from "./Marquee";
+import { Method } from "./Method";
 import { Nav } from "./Nav";
-import { Services } from "./Services";
-import { ContactButton, FadeIn } from "./ui";
+import { Work } from "./Work";
 
 export default function App() {
   const [active, setActive] = useState<number | null>(null);
@@ -24,40 +22,18 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero />
-        <Carousel />
-        <Marquee onOpen={setActive} />
-        <Catalog onOpen={setActive} />
-        <Services />
+        <Craft />
+        <Work onOpen={setActive} activePhoto={active} />
         <About />
-        <section
-          id="contact"
-          className="px-[clamp(1.25rem,4vw,4.5rem)] pb-24 pt-8 md:pb-32"
-        >
-          <FadeIn y={20}>
-            <h2 className="hero-heading font-display text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.95]">
-              联系
-            </h2>
-            <p className="mt-5 max-w-md text-[#C5D0D8]">拍摄、短片与品牌影像，欢迎来信。</p>
-            <a
-              href={MAILTO}
-              className="font-latin mt-8 inline-block text-[clamp(1.25rem,2vw,1.8rem)] font-light tracking-wide text-[#E7EEF2]"
-            >
-              {EMAIL}
-            </a>
-            <p className="mt-3 text-sm tracking-[0.14em] text-[#9AA6B0]">成都</p>
-            <div className="mt-8">
-              <ContactButton>写信</ContactButton>
-            </div>
-          </FadeIn>
-        </section>
+        <Method />
+        <Contact />
       </main>
-      <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-[clamp(1.25rem,4vw,4.5rem)] py-6 text-sm tracking-[0.06em] text-[#9AA6B0]">
-        <p>© 2026 沈现周</p>
-        <a href={MAILTO}>{EMAIL}</a>
-        <a href="https://www.xinpianchang.com/u10948584" target="_blank" rel="noopener noreferrer">
-          新片场主页
+      <footer className="shell flex flex-wrap items-center justify-between gap-4 border-t border-white/10 py-8 text-sm tracking-[0.08em] text-[#9AA6B0]">
+        <p>沈现周</p>
+        <p className="font-latin">{new Date().getFullYear()}</p>
+        <a href="#top" className="hover:text-[#E7EEF2]">
+          回到顶部
         </a>
-        <a href="#top">回到顶部</a>
       </footer>
       <Lightbox index={active} onChange={setActive} />
     </div>
