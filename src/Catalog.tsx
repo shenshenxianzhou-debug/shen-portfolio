@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  character,
   films,
   photoCategories,
   photos,
@@ -10,6 +11,7 @@ import {
   type Photo,
 } from "./content";
 import { ArrowUpRight } from "lucide-react";
+import { LoopMedia } from "./media";
 import { EdgeLight, FadeIn, Glare, useTilt } from "./ui";
 
 function PhotoTile({
@@ -21,7 +23,7 @@ function PhotoTile({
   index: number;
   onOpen: (index: number) => void;
 }) {
-  const { ref, glareRef } = useTilt(6);
+  const { ref, glareRef, reduce } = useTilt(4);
   return (
     <button
       type="button"
@@ -32,10 +34,10 @@ function PhotoTile({
       <div
         ref={ref}
         className="relative h-full [transform-style:preserve-3d]"
-        style={{ willChange: "transform" }}
+        style={reduce ? undefined : { willChange: "transform" }}
       >
         <img
-          src={photo.src}
+          src={photo.thumb}
           alt=""
           loading="lazy"
           className="h-full w-full object-cover"
@@ -44,6 +46,34 @@ function PhotoTile({
         <EdgeLight />
       </div>
     </button>
+  );
+}
+
+function FoodChapter() {
+  return (
+    <div
+      className="relative mt-2 aspect-video w-screen max-w-none bg-black"
+      style={{ marginLeft: "calc(50% - 50vw)" }}
+    >
+      <LoopMedia
+        video={character.food.video}
+        still={character.food.still}
+        alt={character.food.alt}
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-y-0 right-0 flex w-[40%] items-center justify-end pr-[clamp(1rem,4vw,4.5rem)]">
+        <div className="w-[min(100%,12em)] text-right">
+          <p className="text-[clamp(0.68rem,1vw,0.8rem)] tracking-[0.2em] text-[#C5D0D8]">照片</p>
+          <p className="hero-heading font-display mt-2 text-[clamp(1.15rem,2.2vw,2.6rem)] font-semibold leading-tight">
+            实地拍下的菜
+          </p>
+          <p className="mt-3 text-[clamp(0.68rem,1vw,0.9rem)] leading-relaxed text-[#D5DEE4]">
+            <span className="block">预先渲染的形象</span>
+            <span className="block">下面是实地拍的</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -150,13 +180,16 @@ export function Catalog({ onOpen }: { onOpen: (index: number) => void }) {
 
       <div className="mt-8" role="tabpanel">
         {medium === "photos" && current === "food" && (
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <>
+          <FoodChapter />
+          <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {photos.map((photo, index) => (
               <li key={photo.src}>
                 <PhotoTile photo={photo} index={index} onOpen={onOpen} />
               </li>
             ))}
           </ul>
+          </>
         )}
 
         {medium === "video" && current === "dining" && (

@@ -293,11 +293,7 @@ export function ContactButton({
   compact?: boolean;
 }) {
   return (
-    <Magnet
-      padding={compact ? 36 : 72}
-      strength={3}
-      className="inline-flex"
-    >
+    <Magnet padding={compact ? 16 : 28} strength={8} className="inline-flex">
       <a
         href={MAILTO}
         className="inline-flex items-center justify-center rounded-full px-7 py-3 font-latin text-sm font-medium tracking-wide text-[#0C0C0C] shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_12px_30px_rgba(0,0,0,0.18)]"

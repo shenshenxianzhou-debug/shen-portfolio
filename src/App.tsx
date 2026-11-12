@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { EMAIL, MAILTO } from "./asset";
 import { About } from "./About";
+import { Carousel } from "./Carousel";
 import { Catalog } from "./Catalog";
 import { Hero } from "./Hero";
 import { Lightbox } from "./Lightbox";
@@ -23,6 +24,7 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero />
+        <Carousel />
         <Marquee onOpen={setActive} />
         <Catalog onOpen={setActive} />
         <Services />
