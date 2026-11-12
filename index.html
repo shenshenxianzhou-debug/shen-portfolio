@@ -119,6 +119,42 @@
       </div>
     </section>
 
+    <section class="films" aria-labelledby="films-heading">
+      <div class="films__head reveal-up">
+        <p class="eyebrow">Film</p>
+        <h2 id="films-heading">影像作品</h2>
+      </div>
+      <ul class="films__list">
+        <li>
+          <a class="film" href="https://www.xinpianchang.com/a13871490" target="_blank" rel="noopener noreferrer" aria-label="影像作品 01，在新片场打开">
+            <span class="film__stage">
+              <span class="film__play" aria-hidden="true"></span>
+              <span class="film__index">01</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="film" href="https://www.xinpianchang.com/a13871473" target="_blank" rel="noopener noreferrer" aria-label="影像作品 02，在新片场打开">
+            <span class="film__stage">
+              <span class="film__play" aria-hidden="true"></span>
+              <span class="film__index">02</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="film" href="https://www.xinpianchang.com/a13871467" target="_blank" rel="noopener noreferrer" aria-label="影像作品 03，在新片场打开">
+            <span class="film__stage">
+              <span class="film__play" aria-hidden="true"></span>
+              <span class="film__index">03</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+      <p class="films__profile reveal-up">
+        <a href="https://www.xinpianchang.com/u10948584" target="_blank" rel="noopener noreferrer">新片场主页</a>
+      </p>
+    </section>
+
     <section class="chapter chapter--table">
       <figure class="chapter__media">
         <img
@@ -144,47 +180,78 @@
         <h2>作品</h2>
       </div>
       <div class="work__grid">
-        <article class="work__item work__item--tall">
-          <img
-            src="assets/dish-steam.jpg"
-            alt="热气升腾的一碗红油面，浅景深静物"
-            width="864"
-            height="1152"
-            loading="lazy"
-          />
-          <div class="work__meta">
-            <span>Steam</span>
-            <strong>热气</strong>
-          </div>
-        </article>
-        <article class="work__item work__item--lacquer">
-          <img
-            src="assets/dish-lacquer.jpg"
-            alt="漆光烤皮特写，焦糖色泽与蒸汽"
-            width="1152"
-            height="864"
-            loading="lazy"
-          />
-          <div class="work__meta">
-            <span>Lacquer</span>
-            <strong>漆光</strong>
-          </div>
-        </article>
-        <article class="work__item work__item--wide">
-          <img
-            src="assets/dish-table.jpg"
-            alt="暗光餐桌，多道菜品围桌摆放"
-            width="1280"
-            height="720"
-            loading="lazy"
-          />
-          <div class="work__meta">
-            <span>Table</span>
-            <strong>围桌</strong>
-          </div>
-        </article>
+        <div class="work__row work__row--feature">
+          <figure class="work__item">
+            <img src="assets/photos/01-claypot-stew.jpg" alt="砂锅中的炖肉与萝卜，热气升腾，顶上铺着香菜" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--pair">
+          <figure class="work__item">
+            <img src="assets/photos/02-chili-fish-buns.jpg" alt="白瓷盘中一份红油浇汁的菜肴正在冒热气，旁有竹笼馒头" width="2000" height="1333" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/03-steamed-dumplings.jpg" alt="竹蒸笼里两只黄皮烧麦，背景是南堂馆的蒸笼" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--portrait-left">
+          <figure class="work__item">
+            <img src="assets/photos/07-pickle-jar-garlic.jpg" alt="厨师从陶坛中舀出泡蒜，前景是红辣椒和泡菜碟" width="1333" height="2000" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/04-four-steamers.jpg" alt="四只南堂馆竹蒸笼，分别盛着糯米、烧卖、豆豉排骨和粉蒸肉" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--pair">
+          <figure class="work__item">
+            <img src="assets/photos/05-chef-mixing-hotpot.jpg" alt="厨师戴黑手套，在炉上用夹子翻拌一锅配菜与肉" width="2000" height="1336" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/06-sliced-meats-broth.jpg" alt="厨师将切好的肉片盛入正在加热的汤锅，旁有一列小料碟" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--feature">
+          <figure class="work__item">
+            <img src="assets/photos/08-chef-pickle-jars.jpg" alt="厨师在酒柜前，把一条鱼放入装满辣椒的玻璃泡菜坛" width="2000" height="1334" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--portrait-right">
+          <figure class="work__item">
+            <img src="assets/photos/09-wooden-steamer.jpg" alt="工作人员揭开木质大蒸桶，蒸汽中可见正在蒸的菜肴" width="2000" height="1333" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/10-chef-opening-jar.jpg" alt="戴厨师帽的厨师正在开启一只大型陶坛" width="1333" height="2000" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--pair">
+          <figure class="work__item">
+            <img src="assets/photos/11-peppercorn-mill.jpg" alt="石磨研磨青花椒，一碗花椒油接在磨口下" width="2000" height="1333" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/12-chef-tossing-wok.jpg" alt="厨师将热气腾腾的菜肴舀入大碗" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--feature">
+          <figure class="work__item">
+            <img src="assets/photos/13-chili-dish-carving.jpg" alt="一双手正在切开铺满干辣椒的菜肴，白瓷盘下有暖光" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--pair">
+          <figure class="work__item">
+            <img src="assets/photos/14-fish-soup-greens.jpg" alt="红墙前砂锅汤在炉上翻滚，旁有一盘绿叶菜与鱼片" width="2000" height="1333" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/15-steamed-buns-steam.jpg" alt="木质大蒸笼揭开，雪白的馒头热气升腾" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
+        <div class="work__row work__row--portrait-left">
+          <figure class="work__item">
+            <img src="assets/photos/16-hanging-roast-duck.jpg" alt="钩子吊起一只刚出炉的烤鸭，四周是蒸汽" width="1333" height="2000" loading="lazy" />
+          </figure>
+          <figure class="work__item">
+            <img src="assets/photos/17-steamed-date-cake.jpg" alt="竹蒸笼里切块的红枣发糕，背景还有一笼同样的点心" width="2000" height="1333" loading="lazy" />
+          </figure>
+        </div>
       </div>
-      <p class="work__note">本组为风格参考画面 / 视觉方向，正式作品可替换为实地拍摄的照片与视频。</p>
     </section>
 
     <section class="about" id="about">
