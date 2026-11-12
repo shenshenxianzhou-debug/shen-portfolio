@@ -1,3 +1,5 @@
 .DS_Store
 previews/
 hero-loop.mp4
+node_modules/
+dist/
