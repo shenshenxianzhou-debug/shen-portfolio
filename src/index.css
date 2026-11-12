@@ -35,13 +35,21 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  #about,
-  #film,
-  #work,
-  #services,
-  #contact {
-    scroll-margin-top: 5.5rem;
+#about,
+#work,
+#services,
+#contact {
+  scroll-margin-top: 5.5rem;
+}
+
+@keyframes carousel-progress {
+  from {
+    transform: scaleX(0);
   }
+  to {
+    transform: scaleX(1);
+  }
+}
 }
 
 @media (prefers-reduced-motion: reduce) {

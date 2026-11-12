@@ -54,83 +54,52 @@ export const tools = "Sony A7M4 · DaVinci Resolve · Premiere · After Effects 
 export const services = [
   {
     number: "01",
-    title: "美食摄影",
-    body: "为餐厅与品牌拍摄菜品主视觉。新店、季节菜品，以及端上桌的那一盘。",
-  },
-  {
-    number: "02",
-    title: "影像策划与拍摄",
+    title: "导演",
     body: "策划、分镜，再到现场的一盏灯。宣传片从策划走到开拍。",
   },
   {
+    number: "02",
+    title: "摄影",
+    body: "菜品与现场的拍摄。新店、季节菜品，以及端上桌的那一盘。",
+  },
+  {
     number: "03",
-    title: "剪辑与调色",
-    body: "剪辑是节奏，调色是呼吸。在夜色里，把温度留在画面上。",
+    title: "剪辑",
+    body: "剪辑是节奏。",
   },
   {
     number: "04",
-    title: "编导与现场",
-    body: "跟拍新品发布、周年庆与开业。从灯下的一盘，到屏幕上的一度。",
+    title: "调色",
+    body: "调色是呼吸。在夜色里，把温度留在画面上。",
   },
 ];
 
-export type Project = {
+export type Medium = "photos" | "video";
+
+export type Category = {
   id: string;
-  number: string;
-  category: string;
-  name: string;
-  note: string;
-  left: number;
-  right: number;
-  kind: "stills" | "films";
+  label: string;
+  populated: boolean;
 };
 
-export const projects: Project[] = [
-  {
-    id: "shoot",
-    number: "01",
-    category: "现场",
-    name: "拍摄",
-    note: "先把光找对。策划、分镜，再到现场的一盏灯。",
-    left: 9,
-    right: 11,
-    kind: "stills",
-  },
-  {
-    id: "film",
-    number: "02",
-    category: "影像",
-    name: "影像作品",
-    note: "剪辑是节奏，调色是呼吸。三支影片在新片场，按原有顺序打开。",
-    left: 7,
-    right: 12,
-    kind: "films",
-  },
-  {
-    id: "table",
-    number: "03",
-    category: "美食摄影",
-    name: "餐桌",
-    note: "食物被端上桌的那一刻。镜头的尽头，是一张桌子。",
-    left: 15,
-    right: 0,
-    kind: "stills",
-  },
-  {
-    id: "steam",
-    number: "04",
-    category: "美食摄影",
-    name: "蒸笼",
-    note: "竹蒸笼里的面点与热气。",
-    left: 2,
-    right: 3,
-    kind: "stills",
-  },
+export const photoCategories: Category[] = [
+  { id: "portrait", label: "人像", populated: false },
+  { id: "city", label: "风光 · 城市", populated: false },
+  { id: "food", label: "美食", populated: true },
+  { id: "product", label: "商业 · 产品", populated: false },
+  { id: "street", label: "纪实 · 街拍", populated: false },
+];
+
+export const videoCategories: Category[] = [
+  { id: "ads", label: "广告 · 宣传片", populated: false },
+  { id: "docs", label: "纪录片 · 微电影", populated: false },
+  { id: "shorts", label: "短视频", populated: false },
+  { id: "dining", label: "美食 · 餐饮", populated: true },
 ];
 
 export const navLinks = [
-  { href: "#about", id: "about", label: "关于" },
-  { href: "#film", id: "film", label: "影像" },
   { href: "#work", id: "work", label: "作品" },
+  { href: "#services", id: "services", label: "服务" },
+  { href: "#about", id: "about", label: "关于我" },
   { href: "#contact", id: "contact", label: "联系" },
 ];

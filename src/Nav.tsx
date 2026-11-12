@@ -15,9 +15,11 @@ export function Nav() {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
       const services = document.getElementById("services");
+      const about = document.getElementById("about");
       if (services) {
         const rect = services.getBoundingClientRect();
-        setOnLight(rect.top < 64 && rect.bottom > 64);
+        const aboutTop = about?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+        setOnLight(rect.top < 64 && rect.bottom > 64 && aboutTop > 64);
       }
       const line = window.scrollY + 140;
       let active = "";
@@ -48,12 +50,11 @@ export function Nav() {
   }, [open]);
 
   const light = onLight && !open;
-  const bar =
-    light
-      ? "bg-white/80 text-[#0C0C0C] backdrop-blur-md"
-      : scrolled || open
-        ? "bg-[#0C0C0C]/78 text-[#E7EEF2] backdrop-blur-md"
-        : "bg-transparent text-[#E7EEF2]";
+  const bar = light
+    ? "bg-white text-[#0C0C0C]"
+    : scrolled || open
+      ? "bg-[#0C0C0C]/78 text-[#E7EEF2] backdrop-blur-md"
+      : "bg-transparent text-[#E7EEF2]";
 
   return (
     <HeroFade delay={0.05} y={-12} className="fixed inset-x-0 top-0 z-50">
@@ -67,8 +68,14 @@ export function Nav() {
               key={link.id}
               href={link.href}
               aria-current={current === link.id ? "true" : undefined}
-              className={`text-sm tracking-[0.18em] transition-opacity ${
-                current === link.id ? "opacity-100" : "opacity-60 hover:opacity-100"
+              className={`text-sm tracking-[0.18em] transition-colors ${
+                current === link.id
+                  ? light
+                    ? "text-black"
+                    : "text-white"
+                  : light
+                    ? "text-black/60 hover:text-black"
+                    : "text-white/60 hover:text-white"
               }`}
             >
               {link.label}

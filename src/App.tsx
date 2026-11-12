@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { EMAIL, MAILTO } from "./asset";
 import { About } from "./About";
+import { Catalog } from "./Catalog";
 import { Hero } from "./Hero";
 import { Lightbox } from "./Lightbox";
 import { Marquee } from "./Marquee";
 import { Nav } from "./Nav";
-import { Projects } from "./Projects";
 import { Services } from "./Services";
 import { ContactButton, FadeIn } from "./ui";
 
@@ -24,19 +24,16 @@ export default function App() {
       <main id="main">
         <Hero />
         <Marquee onOpen={setActive} />
-        <About />
+        <Catalog onOpen={setActive} />
         <Services />
-        <Projects onOpen={setActive} />
+        <About />
         <section
           id="contact"
           className="px-[clamp(1.25rem,4vw,4.5rem)] pb-24 pt-8 md:pb-32"
         >
           <FadeIn y={20}>
-            <p lang="en" className="font-latin text-sm font-light italic tracking-[0.18em] text-[#9AA6B0]">
-              Contact
-            </p>
-            <h2 className="hero-heading font-display mt-3 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.95]">
-              接洽咨询
+            <h2 className="hero-heading font-display text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.95]">
+              联系
             </h2>
             <p className="mt-5 max-w-md text-[#C5D0D8]">拍摄、短片与品牌影像，欢迎来信。</p>
             <a
