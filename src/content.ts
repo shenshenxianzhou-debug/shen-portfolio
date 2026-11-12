@@ -2,11 +2,13 @@ import { asset, XINPIANCHANG } from "./asset";
 
 export type Photo = {
   src: string;
+  thumb: string;
   alt: string;
 };
 
 const file = (name: string, alt: string): Photo => ({
   src: asset(`assets/photos/${name}`),
+  thumb: asset(`assets/photos/thumbs/${name.replace(/\.jpg$/, ".webp")}`),
   alt,
 });
 
@@ -30,9 +32,30 @@ export const photos: Photo[] = [
   file("17-steamed-date-cake.jpg", "竹蒸笼里切块的红枣发糕，背景还有一笼同样的点心"),
 ];
 
-export const portrait = {
-  src: asset("assets/character-portrait.jpg"),
-  alt: "沈现周三维形象半身肖像，黑色高领与外套，暖色轮廓光",
+export const character = {
+  hero: {
+    still: asset("assets/character/hero-camera.jpg"),
+    video: asset("assets/character/hero-camera.mp4"),
+    alt: "沈现周的预先渲染形象立在画面右侧，手持相机对着镜头，左侧是深色空白",
+  },
+  food: {
+    still: asset("assets/character/food-set.jpg"),
+    video: asset("assets/character/food-set.mp4"),
+    alt: "沈现周的预先渲染形象立在画面左侧，身旁是中式菜品与蒸汽，右侧是深色空白",
+  },
+  grading: {
+    still: asset("assets/character/grading.jpg"),
+    alt: "沈现周的预先渲染形象坐在调色台前，画面左侧是深色空白",
+  },
+  rim: {
+    still: asset("assets/character/rimlight.jpg"),
+    video: asset("assets/character/rimlight.mp4"),
+    alt: "沈现周的预先渲染形象，暖色轮廓光下的半身，黑色高领与外套，银色开口吊坠",
+  },
+  pose: {
+    still: asset("assets/character/apose.jpg"),
+    alt: "沈现周的预先渲染全身形象，黑色高领、炭灰外套、相机斜挎，黑鞋带有红色鞋底",
+  },
 };
 
 export const films = [

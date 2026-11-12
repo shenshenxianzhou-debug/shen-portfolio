@@ -14,12 +14,14 @@ export function Nav() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
-      const services = document.getElementById("services");
+      const sheet = document.getElementById("services-sheet");
       const about = document.getElementById("about");
-      if (services) {
-        const rect = services.getBoundingClientRect();
+      if (sheet) {
+        const rect = sheet.getBoundingClientRect();
         const aboutTop = about?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
         setOnLight(rect.top < 64 && rect.bottom > 64 && aboutTop > 64);
+      } else {
+        setOnLight(false);
       }
       const line = window.scrollY + 140;
       let active = "";

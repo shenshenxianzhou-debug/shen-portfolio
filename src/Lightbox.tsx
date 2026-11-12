@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import { photos } from "./content";
 import { EASE, EdgeLight, Glare, useLockScroll, usePrefersReducedMotion, useTilt } from "./ui";
 import { motion } from "framer-motion";
@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 function Frame({ index }: { index: number }) {
   const photo = photos[index];
   const reduce = usePrefersReducedMotion();
-  const { ref, glareRef } = useTilt(4);
+  const { ref, glareRef, reduce: tiltOff } = useTilt(3);
 
   return (
     <motion.figure
@@ -18,10 +18,15 @@ function Frame({ index }: { index: number }) {
       style={{ transformPerspective: 1100 }}
       className="relative m-0"
     >
-      <div ref={ref} className="relative [transform-style:preserve-3d]" style={{ willChange: "transform" }}>
+      <div
+        ref={ref}
+        className="relative [transform-style:preserve-3d]"
+        style={tiltOff ? undefined : { willChange: "transform" }}
+      >
         <img
           src={photo.src}
           alt={photo.alt}
+          draggable={false}
           className="max-h-[min(78vh,820px)] max-w-[min(88vw,1100px)] rounded-2xl object-contain shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
         />
         <Glare glareRef={glareRef} />
@@ -39,6 +44,7 @@ export function Lightbox({
   onChange: (index: number | null) => void;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const swipe = useRef<{ x: number; y: number; id: number } | null>(null);
   useLockScroll(index !== null);
 
   useEffect(() => {
@@ -68,6 +74,27 @@ export function Lightbox({
 
   const photo = index === null ? null : photos[index];
   const pad = (value: number) => String(value).padStart(2, "0");
+  const step = (direction: -1 | 1) => {
+    if (index === null) return;
+    onChange((index + direction + photos.length) % photos.length);
+  };
+
+  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0) return;
+    const target = event.target as HTMLElement;
+    if (target.closest("button")) return;
+    swipe.current = { x: event.clientX, y: event.clientY, id: event.pointerId };
+  };
+
+  const onPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const start = swipe.current;
+    swipe.current = null;
+    if (!start || start.id !== event.pointerId) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.15) return;
+    step(dx < 0 ? 1 : -1);
+  };
 
   return (
     <dialog
@@ -80,7 +107,14 @@ export function Lightbox({
       }}
     >
       {photo && index !== null && (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-4 px-4">
+        <div
+          className="flex h-full w-full touch-pan-y flex-col items-center justify-center gap-4 px-4"
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerCancel={() => {
+            swipe.current = null;
+          }}
+        >
           <Frame index={index} />
           <p className="font-latin text-sm italic tracking-[0.16em] text-[#C5D0D8]">
             {pad(index + 1)} / {pad(photos.length)}
@@ -100,7 +134,7 @@ export function Lightbox({
             type="button"
             className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/35 md:left-6"
             aria-label="上一张"
-            onClick={() => onChange((index - 1 + photos.length) % photos.length)}
+            onClick={() => step(-1)}
           >
             <ChevronLeft size={18} />
           </button>
@@ -108,7 +142,7 @@ export function Lightbox({
             type="button"
             className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/25 bg-black/35 md:right-6"
             aria-label="下一张"
-            onClick={() => onChange((index + 1) % photos.length)}
+            onClick={() => step(1)}
           >
             <ChevronRight size={18} />
           </button>

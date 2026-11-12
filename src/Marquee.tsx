@@ -56,7 +56,7 @@ export function Marquee({ onOpen }: { onOpen: (index: number) => void }) {
       const px = (event.clientX - rect.left) / rect.width - 0.5;
       const py = (event.clientY - rect.top) / rect.height - 0.5;
       const z = tile.dataset.z ?? "0";
-      tile.style.transform = `translateZ(${z}px) rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg)`;
+      tile.style.transform = `translateZ(${z}px) rotateX(${(-py * 4).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg)`;
       const glare = tile.querySelector<HTMLElement>("[data-glare]");
       if (glare) {
         glare.style.opacity = "1";
@@ -136,7 +136,7 @@ export function Marquee({ onOpen }: { onOpen: (index: number) => void }) {
               aria-label={`查看照片：${photo.alt}`}
             >
               <img
-                src={photo.src}
+                src={photo.thumb}
                 alt=""
                 className="aspect-[420/270] w-full object-cover"
                 loading="lazy"
@@ -210,7 +210,7 @@ function Shelf({
                   style={{ transform: `translateZ(${z}px)`, willChange: "transform" }}
                 >
                   <img
-                    src={photo.src}
+                    src={photo.thumb}
                     alt=""
                     width={420}
                     height={270}
