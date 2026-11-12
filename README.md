@@ -15,3 +15,7 @@ python3 -m http.server
 ## 说明
 
 作品区的食物静帧是风格参考与视觉方向，不是沈先生的委托拍摄成片。
+
+## 在线站点
+
+发布到 GitHub Pages 之后，站点地址为 <https://shenshenxianzhou-debug.github.io/shen-portfolio/>。
