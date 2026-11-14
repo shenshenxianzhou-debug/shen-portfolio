@@ -6,7 +6,7 @@ const Corridor = lazy(() => import("./corridor/Corridor"));
 
 function canRunCorridor() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-  if (!window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)").matches) return false;
+  if (!window.matchMedia("(min-width: 960px)").matches) return false;
   const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
   if (memory && memory < 4) return false;
   try {
