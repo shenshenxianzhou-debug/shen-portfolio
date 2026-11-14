@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { EMAIL, MAILTO } from "./asset";
-import { Chapter } from "./ui";
+import { Arrow, Kicker, Reveal } from "./ui";
+
+const packageMail = `mailto:${EMAIL}?subject=${encodeURIComponent("打包咨询")}`;
+const singleMail = `mailto:${EMAIL}?subject=${encodeURIComponent("单点咨询")}`;
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
@@ -24,26 +27,44 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section shell border-t border-white/10">
-      <div className="frame max-w-4xl">
-        <Chapter index="05" label="联系" />
-        <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-[#C5D0D8]">
-          拍摄、短片与品牌影像，欢迎来信。
-        </p>
-        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <a href={MAILTO} className="email-link font-latin">
-            {EMAIL}
-          </a>
-          <button type="button" className={`copy-btn${copied ? " is-copied" : ""}`} onClick={() => void copy()}>
-            {copied ? "已复制" : "复制"}
-          </button>
-        </div>
-        <p className="sr-only" aria-live="polite">
-          {copied ? "邮箱地址已复制" : hint}
-        </p>
-        {hint ? <p className="mt-4 text-sm text-[#9AA6B0]">{hint}</p> : null}
-        <p className="mt-12 text-sm tracking-[0.22em] text-[#9AA6B0]">成都</p>
+    <section id="contact" className="chapter contact-chapter">
+      <Reveal>
+        <Kicker index="05" label="联系" />
+        <h2 className="display display-contact">
+          <span>一起拍点</span>
+          <span>好吃的。</span>
+        </h2>
+        <p className="lede">拍摄与影像，欢迎来信。可以打包，也可以单点。</p>
+      </Reveal>
+      <Reveal delay={80}>
+        <a className="email-link font-latin" href={MAILTO}>
+          {EMAIL}
+        </a>
+      </Reveal>
+      <div className="ember-bar">
+        <p>一个想法，写一封信。</p>
+        <a href={MAILTO}>
+          写信 <Arrow />
+        </a>
+        <button type="button" className={copied ? "is-copied" : ""} onClick={() => void copy()}>
+          {copied ? "已复制" : "复制"} <Arrow />
+        </button>
+        <a href={packageMail}>
+          打包 <Arrow />
+        </a>
+        <a href={singleMail}>
+          单点 <Arrow />
+        </a>
       </div>
+      <p className="sr-only" aria-live="polite">
+        {copied ? "邮箱地址已复制" : hint}
+      </p>
+      {hint ? <p className="hint">{hint}</p> : null}
+      <footer className="colophon">
+        <p>沈现周</p>
+        <p className="font-latin">{new Date().getFullYear()}</p>
+        <a href="#top">回到顶部</a>
+      </footer>
     </section>
   );
 }

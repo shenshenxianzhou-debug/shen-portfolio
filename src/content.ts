@@ -32,143 +32,64 @@ export const photos: Photo[] = [
   file("17-steamed-date-cake.jpg", "竹蒸笼里切块的红枣发糕，背景还有一笼同样的点心"),
 ];
 
-export const character = {
-  hero: {
-    still: asset("assets/character/hero-camera.jpg"),
-    video: asset("assets/character/hero-camera.mp4"),
-    alt: "沈现周的预先渲染形象立在画面右侧，手持相机对着镜头，左侧是深色空白",
-  },
-  food: {
-    still: asset("assets/character/food-set.jpg"),
-    video: asset("assets/character/food-set.mp4"),
-    alt: "沈现周的预先渲染形象立在画面左侧，身旁是中式菜品与蒸汽，右侧是深色空白",
-  },
-  grading: {
-    still: asset("assets/character/grading.jpg"),
-    alt: "沈现周的预先渲染形象坐在调色台前，画面左侧是深色空白",
-  },
-  rim: {
-    still: asset("assets/character/rimlight.jpg"),
-    video: asset("assets/character/rimlight.mp4"),
-    alt: "沈现周的预先渲染形象，暖色轮廓光下的半身，黑色高领与外套，银色开口吊坠",
-  },
-  pose: {
-    still: asset("assets/character/apose.jpg"),
-    alt: "沈现周的预先渲染全身形象，黑色高领、炭灰外套、相机斜挎，黑鞋带有红色鞋底",
-  },
+export const likeness = {
+  webp: asset("assets/character/shen-expr-default.webp"),
+  jpg: asset("assets/character/shen-expr-default.jpg"),
+  alt: "沈现周的预先渲染半身形象，黑色高领与外套，手按在衣襟，银色开口吊坠",
 };
-
-export type ExpressionId = "default" | "direct" | "shoot" | "edit" | "grade";
-
-export type Expression = {
-  id: ExpressionId;
-  jpg: string;
-  webp: string;
-  alt: string;
-};
-
-const expression = (id: ExpressionId, name: string, alt: string): Expression => ({
-  id,
-  jpg: asset(`assets/character/${name}.jpg`),
-  webp: asset(`assets/character/${name}.webp`),
-  alt,
-});
-
-export const expressions: Record<ExpressionId, Expression> = {
-  default: expression(
-    "default",
-    "shen-expr-default",
-    "沈现周的预先渲染半身形象，黑色高领与外套，手按在衣襟，银色开口吊坠",
-  ),
-  direct: expression(
-    "direct",
-    "shen-expr-direct",
-    "沈现周的预先渲染半身形象，抬手置于胸前，对应导演",
-  ),
-  shoot: expression(
-    "shoot",
-    "shen-expr-photo",
-    "沈现周的预先渲染半身形象，手持相机对着镜头，对应摄影",
-  ),
-  edit: expression(
-    "edit",
-    "shen-expr-edit",
-    "沈现周的预先渲染半身形象，手托住下巴，目光朝下，对应剪辑",
-  ),
-  grade: expression(
-    "grade",
-    "shen-expr-grade",
-    "沈现周的预先渲染半身形象，正视镜头，对应调色",
-  ),
-};
-
-export type CraftId = Exclude<ExpressionId, "default">;
-
-export const crafts: { id: CraftId; number: string; title: string; body: string }[] = [
-  {
-    id: "direct",
-    number: "01",
-    title: "导演",
-    body: "策划、分镜，再到现场。宣传片从这里开拍。",
-  },
-  {
-    id: "shoot",
-    number: "02",
-    title: "摄影",
-    body: "菜品与现场。新店、季节菜，以及端上桌的那一盘。",
-  },
-  {
-    id: "edit",
-    number: "03",
-    title: "剪辑",
-    body: "把拍回来的素材剪成成片的结构。",
-  },
-  {
-    id: "grade",
-    number: "04",
-    title: "调色",
-    body: "收拾颜色和质感。",
-  },
-];
-
-export const methodSteps = [
-  { number: "01", title: "策划分镜", body: "先做策划和分镜，把要拍的定下来。" },
-  { number: "02", title: "拍摄用光", body: "拍摄菜品与现场，把光用在食物上。" },
-  { number: "03", title: "剪辑结构", body: "按成片需要的结构来剪。" },
-  { number: "04", title: "调色质感", body: "最后收拾颜色和质感。" },
-];
 
 export const films = [
-  { index: "01", href: "https://www.xinpianchang.com/a13871490" },
-  { index: "02", href: "https://www.xinpianchang.com/a13871473" },
-  { index: "03", href: "https://www.xinpianchang.com/a13871467" },
+  { index: "01", id: "a13871490", href: "https://www.xinpianchang.com/a13871490" },
+  { index: "02", id: "a13871473", href: "https://www.xinpianchang.com/a13871473" },
+  { index: "03", id: "a13871467", href: "https://www.xinpianchang.com/a13871467" },
 ] as const;
-
-export type WorkCase =
-  | { kind: "photo"; photoIndex: number }
-  | { kind: "film"; index: string; href: string };
-
-export const cases: WorkCase[] = [
-  ...photos.map((_, photoIndex) => ({ kind: "photo" as const, photoIndex })),
-  ...films.map((film) => ({ kind: "film" as const, index: film.index, href: film.href })),
-];
 
 export const profileHref = XINPIANCHANG;
 
-export const about = {
-  opening: "我是沈现周。",
-  place: "成都。影像工作约九年。",
-  role: "美食摄影师，编导、导演、摄影师、剪辑与调色。",
-  practice:
-    "任职四川荟东方餐饮集团，服务南堂馆。宣传片从策划、分镜、拍摄到剪辑、调色，自己做完整条流程。菜品主视觉，以及二十四节气内容。",
-  tools: "Sony A7M4 · DaVinci Resolve · Premiere · After Effects",
-  output: "可输出 4K HDR",
-};
+export const fields = [
+  {
+    number: "01",
+    title: "美食摄影",
+    body: "菜品与现场。新店、季节菜，以及端上桌的那一盘。",
+    href: "#gallery",
+    label: "进入画廊",
+  },
+  {
+    number: "02",
+    title: "影像作品",
+    body: "新片场上的三支影片，按原来的顺序打开。",
+    href: "#films",
+    label: "看影片",
+  },
+  {
+    number: "03",
+    title: "导演与剪辑",
+    body: "从策划、分镜、拍摄到剪辑。可以整包，也可以单点。",
+    href: "#contact",
+    label: "约这一项",
+  },
+  {
+    number: "04",
+    title: "调色",
+    body: "收拾颜色和质感，成片可以输出 4K HDR。",
+    href: "#contact",
+    label: "约这一项",
+  },
+] as const;
+
+export const methodSteps = [
+  { number: "01", title: "策划分镜", body: "先把要拍的定下来。" },
+  { number: "02", title: "拍摄用光", body: "把光用在食物上。" },
+  { number: "03", title: "剪辑结构", body: "按成片的结构来剪。" },
+  { number: "04", title: "调色质感", body: "最后收拾颜色。" },
+] as const;
 
 export const navLinks = [
-  { href: "#services", id: "services", label: "服务" },
-  { href: "#work", id: "work", label: "作品" },
+  { href: "#gallery", id: "gallery", label: "作品" },
+  { href: "#fields", id: "fields", label: "领域" },
+  { href: "#films", id: "films", label: "影片" },
   { href: "#about", id: "about", label: "关于" },
-  { href: "#method", id: "method", label: "方法" },
   { href: "#contact", id: "contact", label: "联系" },
-];
+] as const;
+
+export const marquee = ["烟火有光", "FOOD", "FILM", "COLOUR", "一口热气，也值得被看见"] as const;
