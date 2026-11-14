@@ -1,114 +1,90 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { character } from "./content";
-import { LoopMedia } from "./media";
-import { usePrefersReducedMotion } from "./ui";
-
-const INFO_AT = 2200;
-const STAGGER = 420;
-
-function Reveal({
-  shown,
-  className,
-  children,
-}: {
-  shown: boolean;
-  className?: string;
-  children: ReactNode;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (shown) return;
-    const node = ref.current;
-    if (node?.contains(document.activeElement)) {
-      (document.activeElement as HTMLElement | null)?.blur();
-    }
-  }, [shown]);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      aria-hidden={shown ? undefined : true}
-      style={{
-        opacity: shown ? 1 : 0,
-        transition: shown ? "opacity 700ms ease" : "none",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+import { useEffect, useState } from "react";
+import { marquee, photos } from "./content";
+import { Arrow, usePrefersReducedMotion } from "./ui";
 
 export function Hero() {
-  const { hero } = character;
   const reduce = usePrefersReducedMotion();
-  const [cycle, setCycle] = useState(0);
-  const [info, setInfo] = useState(reduce);
-  const [work, setWork] = useState(reduce);
-  const [about, setAbout] = useState(reduce);
+  const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
-    if (reduce) {
-      setInfo(true);
-      setWork(true);
-      setAbout(true);
-      return;
-    }
-    setInfo(false);
-    setWork(false);
-    setAbout(false);
-    const infoTimer = window.setTimeout(() => setInfo(true), INFO_AT);
-    const workTimer = window.setTimeout(() => setWork(true), INFO_AT + STAGGER);
-    const aboutTimer = window.setTimeout(() => setAbout(true), INFO_AT + STAGGER * 2);
-    return () => {
-      window.clearTimeout(infoTimer);
-      window.clearTimeout(workTimer);
-      window.clearTimeout(aboutTimer);
-    };
-  }, [cycle, reduce]);
+    if (reduce) return;
+    const next = photos[(index + 1) % photos.length];
+    const preload = new Image();
+    preload.src = next.thumb;
+  }, [index, reduce]);
+
+  useEffect(() => {
+    if (reduce) return;
+    const node = document.querySelector(".ember-band");
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setPlaying(Boolean(entry?.isIntersecting)),
+      { threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [reduce]);
+
+  useEffect(() => {
+    if (reduce) return;
+    const timer = window.setInterval(() => {
+      setIndex((value) => (value + 1) % photos.length);
+    }, 4600);
+    return () => window.clearInterval(timer);
+  }, [reduce]);
+
+  const band = [...marquee, ...marquee, ...marquee];
 
   return (
-    <section id="top" aria-label="首页" className="hero">
-      <div className="hero-copy">
-        <div className="w-full">
-          <h1 className="font-display whitespace-nowrap text-[clamp(3.5rem,7.2vw,7.4rem)] font-semibold leading-[0.96] text-[#F4F7F8]">
-            沈现周
-          </h1>
-          <p className="mt-4 whitespace-nowrap text-[clamp(0.95rem,1.5vw,1.25rem)] tracking-[0.16em] text-[#E7EEF2]">
-            美食摄影 / 影像
+    <section id="top" className="chapter hero-chapter">
+      <div className="hero-grid">
+        <div className="hero-copy">
+          <p className="kicker">
+            <span className="font-latin">FOOD PHOTOGRAPHY & FILM</span>
           </p>
-          <Reveal shown={info} className="mt-6 min-h-[1.4em]">
-            <p className="text-sm tracking-[0.12em] text-[#C5D0D8]">成都 · 影像工作约九年</p>
-          </Reveal>
-          <div className="mt-8 flex flex-col items-start gap-4">
-            <Reveal shown={work}>
-              <a href="#work" className="link-line" tabIndex={work ? 0 : -1}>
-                看作品 <span aria-hidden>→</span>
-              </a>
-            </Reveal>
-            <Reveal shown={about}>
-              <a href="#about" className="link-line" tabIndex={about ? 0 : -1}>
-                认识我 <span aria-hidden>→</span>
-              </a>
-            </Reveal>
+          <h1 className="display">
+            <span>人间有味</span>
+            <span>是清欢</span>
+          </h1>
+          <p className="attrib">苏轼《浣溪沙》</p>
+          <p className="lede">
+            成都美食摄影师与导演，影像工作约九年。导演、摄影、剪辑、调色。
+          </p>
+          <div className="cta-row">
+            <a className="pill" href="#gallery">
+              看作品 <Arrow />
+            </a>
+            <a className="text-link" href="#contact">
+              联系我 <Arrow />
+            </a>
           </div>
         </div>
+        <div className="hero-media">
+          {[(index + photos.length - 1) % photos.length, index, (index + 1) % photos.length].map((photoIndex) => {
+            const photo = photos[photoIndex];
+            const on = photoIndex === index;
+            return (
+              <img
+                key={photo.src}
+                src={photo.thumb}
+                alt={on ? photo.alt : ""}
+                className={on ? "is-on" : ""}
+                fetchPriority={photoIndex === 0 ? "high" : "auto"}
+                loading={photoIndex === 0 ? "eager" : "lazy"}
+                decoding="async"
+                draggable={false}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div className="hero-media">
-        <LoopMedia
-          video={hero.video}
-          still={hero.still}
-          alt={hero.alt}
-          priority
-          className="hero-frame"
-          onLoop={() => {
-            setInfo(false);
-            setWork(false);
-            setAbout(false);
-            setCycle((value) => value + 1);
-          }}
-        />
+      <div className={`ember-band${playing && !reduce ? "" : " is-paused"}`} aria-hidden>
+        <div className="ember-track">
+          {band.map((item, itemIndex) => (
+            <span key={`${item}-${itemIndex}`}>{item}</span>
+          ))}
+        </div>
       </div>
     </section>
   );

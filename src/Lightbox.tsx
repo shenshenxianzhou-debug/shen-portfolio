@@ -1,4 +1,3 @@
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import { photos } from "./content";
 import { useLockScroll } from "./ui";
@@ -21,9 +20,7 @@ export function Lightbox({
     if (!dialog) return;
     if (index !== null) {
       if (!dialog.open) dialog.showModal();
-    } else if (dialog.open) {
-      dialog.close();
-    }
+    } else if (dialog.open) dialog.close();
   }, [index]);
 
   useEffect(() => {
@@ -75,45 +72,25 @@ export function Lightbox({
     >
       {photo && index !== null && (
         <div
-          className="flex h-full w-full touch-pan-y flex-col items-center justify-center gap-4 px-4"
+          className="lightbox-body"
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
           onPointerCancel={() => {
             swipe.current = null;
           }}
         >
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            draggable={false}
-            className="max-h-[min(74vh,820px)] max-w-[min(90vw,1100px)] object-contain"
-          />
-          <p className="max-w-xl text-center text-sm leading-relaxed text-[#C5D0D8]" aria-live="polite">
+          <img src={photo.src} alt={photo.alt} draggable={false} />
+          <p aria-live="polite">
             {pad(index + 1)} / {pad(photos.length)} · {photo.alt}
           </p>
-          <button
-            type="button"
-            className="nav-arrow absolute right-4 top-4"
-            aria-label="关闭"
-            onClick={() => onChange(null)}
-          >
-            <X size={18} />
+          <button type="button" className="lb" aria-label="关闭" onClick={() => onChange(null)}>
+            ×
           </button>
-          <button
-            type="button"
-            className="nav-arrow absolute left-3 top-1/2 -translate-y-1/2 md:left-6"
-            aria-label="上一张"
-            onClick={() => step(-1)}
-          >
-            <ChevronLeft size={18} />
+          <button type="button" className="lb prev" aria-label="上一张" onClick={() => step(-1)}>
+            ←
           </button>
-          <button
-            type="button"
-            className="nav-arrow absolute right-3 top-1/2 -translate-y-1/2 md:right-6"
-            aria-label="下一张"
-            onClick={() => step(1)}
-          >
-            <ChevronRight size={18} />
+          <button type="button" className="lb next" aria-label="下一张" onClick={() => step(1)}>
+            →
           </button>
         </div>
       )}
