@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "./content";
-import { Arrow, useLockScroll } from "./ui";
+import { useLockScroll } from "./ui";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export function Nav() {
   return (
     <div className="nav-wrap">
       <header className="nav shell">
-        <a href="#top" className="wordmark font-display">
+        <a href="#top" className="wordmark">
           灵活的左撇子
         </a>
         <nav className="nav-links" aria-label="主导航">
@@ -54,9 +54,6 @@ export function Nav() {
             </a>
           ))}
         </nav>
-        <a className="pill" href="#gallery">
-          看作品 <Arrow />
-        </a>
         <button
           type="button"
           className="menu-btn"

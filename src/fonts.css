@@ -45,6 +45,22 @@
 @font-face {
   font-family: "Noto Sans SC";
   font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/noto-sans-sc-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans SC";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/noto-sans-sc-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans SC";
+  font-style: normal;
   font-weight: 900;
   font-display: swap;
   src: url("./fonts/noto-sans-sc-900.woff2") format("woff2");
