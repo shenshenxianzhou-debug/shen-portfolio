@@ -45,6 +45,7 @@ function useCopy(value: string) {
 export function About() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [menu, setMenu] = useState(false);
+  const [compact, setCompact] = useState(false);
   const [query, setQuery] = useState("");
   const searchRef = useRef<HTMLDialogElement>(null);
   const searchId = useId();
@@ -59,6 +60,13 @@ export function About() {
     ? catalog.filter((item) => `${item.label} ${item.text}`.toLowerCase().includes(query.trim().toLowerCase()))
     : catalog;
 
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const jump = (id: string) => {
     searchRef.current?.close();
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -66,7 +74,7 @@ export function About() {
 
   return (
     <div className="cv" data-theme={theme}>
-      <header className="cv-header">
+      <header className={`cv-header${compact ? " is-compact" : ""}`}>
         <a className="cv-brand" href="#top">
           灵活的左撇子
         </a>
@@ -127,7 +135,8 @@ export function About() {
             </div>
             <div className="cv-copy">
               <h1 className="cv-name">
-                沈现周<span>/shenxianzhou</span>
+                <span className="cv-name-zh">沈现周</span>
+                <span className="cv-name-en">/shenxianzhou</span>
               </h1>
               <p className="cv-meta">33 years / Chengdu / 成都</p>
               <p className="cv-bio">

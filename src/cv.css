@@ -17,7 +17,7 @@
   background: var(--cv-page);
   color: var(--cv-ink);
   color-scheme: light;
-  font-family: Arimo, "Noto Sans SC", sans-serif;
+  font-family: Tinos, "Noto Sans SC", serif;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: normal;
@@ -44,6 +44,17 @@
   padding-inline: max(20px, calc((100% - 1296px) / 2));
   background: var(--cv-page);
   color: var(--cv-ink);
+  font-family: Tinos, "Noto Sans SC", serif;
+  transition: height 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.cv-header.is-compact {
+  height: 40px;
+  transition-duration: 1s;
+}
+
+.cv-header.is-compact:hover {
+  height: var(--cv-header);
 }
 
 .cv-brand {
@@ -61,6 +72,7 @@
 
 .cv-nav a {
   color: var(--cv-ink);
+  font-family: Tinos, "Noto Sans SC", serif;
   font-size: 17px;
   font-weight: 400;
   line-height: 1.5;
@@ -163,6 +175,8 @@
 
 .cv-spacer {
   height: 12vh;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .cv-card {
@@ -206,28 +220,34 @@
 }
 
 .cv-copy {
-  padding: 28px 20px 36px;
+  padding: 28px 52px 36px 20px;
 }
 
 .cv-name {
+  display: flex;
+  align-items: baseline;
+  height: 32px;
   margin: 0;
+  overflow: hidden;
   color: var(--cv-ink);
-  font-family: "Noto Sans SC", Arimo, sans-serif;
+  font-family: "Noto Sans SC", sans-serif;
   font-size: 32px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: normal;
-  line-height: 1;
+  line-height: 32px;
 }
 
-.cv-name span {
-  font-family: Arimo, "Noto Sans SC", sans-serif;
+.cv-name-en {
+  font-family: Tinos, "Noto Sans SC", serif;
+  font-size: 26px;
   font-weight: 700;
+  line-height: 32px;
 }
 
 .cv-meta {
   margin: 20px 0 40px;
   color: var(--cv-hot);
-  font-family: Arimo, "Noto Sans SC", sans-serif;
+  font-family: Tinos, "Noto Sans SC", serif;
   font-size: 16px;
   font-style: italic;
   font-weight: 400;
@@ -237,6 +257,7 @@
 .cv-bio {
   margin: 0 0 20px;
   color: var(--cv-ink);
+  font-family: "Noto Sans SC", Arimo, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
@@ -244,14 +265,15 @@
 
 .cv-rule {
   height: 1px;
-  margin: 30px 0;
-  background: var(--cv-line);
+  margin: 0 0 20px;
+  padding: 30px 0;
+  background: linear-gradient(var(--cv-line), var(--cv-line)) center / 100% 1px no-repeat;
 }
 
 .cv-h2 {
   margin: 0 0 30px;
   color: var(--cv-ink);
-  font-family: "Noto Sans SC", Arimo, sans-serif;
+  font-family: Tinos, "Noto Sans SC", serif;
   font-size: 32px;
   font-weight: 700;
   letter-spacing: normal;
@@ -282,6 +304,7 @@
 .cv-grid p {
   margin: 0;
   color: var(--cv-ink);
+  font-family: "Noto Sans SC", Arimo, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.8;
@@ -342,7 +365,7 @@
   border-radius: 40px;
   padding: 10px 28px;
   color: var(--cv-ink);
-  font-family: Arimo, "Noto Sans SC", sans-serif;
+  font-family: Tinos, "Noto Sans SC", serif;
   font-size: 22px;
   line-height: 34px;
   white-space: nowrap;
@@ -501,8 +524,8 @@
     top: var(--cv-header);
     height: calc(100vh - 120px);
     max-height: 796px;
-    margin: -80px 0 0;
-    padding: 20px;
+    margin: -60px 0 0;
+    padding: 0 20px 20px;
     flex-direction: column;
     overflow: auto;
     scroll-snap-type: y mandatory;
@@ -532,9 +555,14 @@
     margin-top: 10px;
   }
 
-  .cv-name {
+  .cv-name,
+  .cv-name-en {
     font-size: 52px;
     line-height: 52px;
+  }
+
+  .cv-name {
+    height: 52px;
   }
 
   .cv-collab {
@@ -570,6 +598,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cv-header,
   .cv-nav a,
   .cv-call {
     transition: none;
