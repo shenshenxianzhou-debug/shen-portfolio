@@ -1,6 +1,23 @@
 /* Self-hosted under the SIL Open Font License.
    Noto Sans SC and Noto Serif SC: src/fonts/OFL-Noto.txt
-   Kanit: src/fonts/OFL-Kanit.txt */
+   Kanit: src/fonts/OFL-Kanit.txt
+   Arimo: src/fonts/OFL-Arimo.txt */
+
+@font-face {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/arimo-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/arimo-700.woff2") format("woff2");
+}
 
 @font-face {
   font-family: Kanit;
