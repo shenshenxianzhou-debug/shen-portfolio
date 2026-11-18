@@ -36,15 +36,17 @@ export function About() {
   return (
     <section id="about" className="chapter about-chapter">
       <div className="about-layout">
-        <div className="desk-strip">
-          {deskStills.map((still) => (
-            <figure key={still.id}>
-              <picture>
-                <source srcSet={still.webp} type="image/webp" />
-                <img src={still.jpg} alt={still.alt} width={1200} height={1500} loading="lazy" decoding="async" />
-              </picture>
-            </figure>
-          ))}
+        <div className="desk-col">
+          <div className="desk-strip">
+            {deskStills.map((still) => (
+              <figure key={still.id}>
+                <picture>
+                  <source srcSet={still.webp} type="image/webp" />
+                  <img src={still.jpg} alt={still.alt} width={864} height={1152} loading="lazy" decoding="async" />
+                </picture>
+              </figure>
+            ))}
+          </div>
           <p className="strip-note">预先渲染的形象，坐在调色台前。不是实时画面。</p>
         </div>
 

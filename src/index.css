@@ -577,6 +577,11 @@
   align-items: start;
 }
 
+.desk-col {
+  display: grid;
+  gap: 0.7rem;
+}
+
 .desk-strip {
   display: flex;
   gap: 0.7rem;
@@ -1109,11 +1114,18 @@ html.has-cursor button {
     grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 1fr);
   }
 
-  .desk-strip {
+  .desk-col {
     position: sticky;
     top: calc(var(--nav) + 0.85rem);
     display: flex;
     max-height: calc(100dvh - var(--nav) - 1.7rem);
+    flex-direction: column;
+  }
+
+  .desk-strip {
+    display: flex;
+    min-height: 0;
+    flex: 1 1 auto;
     flex-direction: column;
     overflow: auto;
     scroll-snap-type: none;
@@ -1121,6 +1133,7 @@ html.has-cursor button {
 
   .desk-strip figure {
     min-width: 0;
+    flex: 0 0 auto;
   }
 
   .desk-strip img {
@@ -1129,8 +1142,8 @@ html.has-cursor button {
     object-position: center 12%;
   }
 
-  .desk-strip .strip-note {
-    min-width: 100%;
+  .desk-col .strip-note {
+    flex: 0 0 auto;
   }
 
   .soft-grid,
