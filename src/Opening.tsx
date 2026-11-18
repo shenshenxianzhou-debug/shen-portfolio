@@ -52,8 +52,7 @@ export function Opening() {
       <span className="wisp wisp-b" />
       <span className="wisp wisp-c" />
       <div className="opening-mark">
-        <p className="font-display">沈现周</p>
-        <p className="font-latin">SHEN XIANZHOU</p>
+        <p className="font-display">灵活的左撇子</p>
       </div>
       <button
         type="button"

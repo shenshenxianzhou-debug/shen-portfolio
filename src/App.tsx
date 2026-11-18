@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { About } from "./About";
-import { Contact } from "./Contact";
 import { Cursor } from "./Cursor";
 import { Fields } from "./Fields";
 import { Films } from "./Films";
@@ -29,7 +28,6 @@ export default function App() {
         <Fields />
         <Films />
         <About />
-        <Contact />
       </main>
       <Lightbox index={active} onChange={setActive} />
     </div>

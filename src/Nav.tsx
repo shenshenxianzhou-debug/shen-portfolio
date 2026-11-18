@@ -36,12 +36,21 @@ export function Nav() {
     <div className="nav-wrap">
       <header className="nav shell">
         <a href="#top" className="wordmark font-display">
-          沈现周
+          灵活的左撇子
         </a>
         <nav className="nav-links" aria-label="主导航">
           {navLinks.map((link) => (
-            <a key={link.id} href={link.href} aria-current={current === link.id ? "true" : undefined}>
-              {link.label}
+            <a
+              key={link.id}
+              href={link.href}
+              aria-current={current === link.id ? "true" : undefined}
+              aria-label={`${link.en} ${link.zh}`}
+            >
+              <span className="nav-en">{link.en}</span>
+              <span className="nav-bar" aria-hidden>
+                |
+              </span>
+              <span>{link.zh}</span>
             </a>
           ))}
         </nav>
@@ -62,7 +71,11 @@ export function Nav() {
         <nav className="nav-sheet" aria-label="主导航">
           {navLinks.map((link) => (
             <a key={link.id} href={link.href} onClick={() => setOpen(false)}>
-              {link.label}
+              <span className="nav-en">{link.en}</span>
+              <span className="nav-bar" aria-hidden>
+                |
+              </span>
+              <span>{link.zh}</span>
             </a>
           ))}
         </nav>
