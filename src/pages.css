@@ -1,0 +1,389 @@
+.cv-bar.overlay .cv-header {
+  background: transparent;
+}
+
+.cv-bar.overlay .cv-brand,
+.cv-bar.overlay .cv-nav a,
+.cv-bar.overlay .cv-icon-btn,
+.cv-bar.overlay .cv-menu {
+  color: #fff;
+}
+
+html[data-theme="dark"] .portfolio,
+html[data-theme="dark"] .work-page {
+  background: #111;
+  color: #f4f4f4;
+}
+
+html[data-theme="dark"] .collection h2 {
+  -webkit-text-stroke-color: #f4f4f4;
+}
+
+.home-slider {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+}
+
+.home-track {
+  display: flex;
+  height: 100%;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.home-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.home-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.18) 48%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.home-copy {
+  position: absolute;
+  z-index: 1;
+  left: 50px;
+  top: 50%;
+  width: min(564px, calc(100% - 80px));
+  transform: translateY(-46%);
+  text-align: left;
+}
+
+.home-kicker {
+  margin: 0;
+  color: #fff;
+  font-family: Tinos, "Noto Sans SC", serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.home-title {
+  margin: 15px 0;
+  color: #fff;
+  font-family: "Noto Sans SC", Tinos, sans-serif;
+  font-size: 8vw;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-indent: -12px;
+}
+
+.home-desc {
+  max-width: 36rem;
+  margin: 0 0 40px;
+  color: rgba(255, 255, 255, 0.69);
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.home-go {
+  color: #fff;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  padding-bottom: 2px;
+}
+
+.home-progress {
+  position: absolute;
+  z-index: 2;
+  left: 84px;
+  right: 84px;
+  bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-family: Tinos, serif;
+  font-size: 14px;
+}
+
+.home-progress span {
+  height: 2px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.47);
+}
+
+.home-progress i {
+  display: block;
+  height: 100%;
+  background: #fff;
+}
+
+.home-arrow {
+  position: absolute;
+  z-index: 2;
+  top: auto;
+  bottom: 2.55rem;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 40px;
+  color: #fff;
+  background: transparent;
+  backdrop-filter: blur(20px);
+}
+
+.home-arrow:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.home-arrow.prev {
+  left: 18px;
+}
+
+.home-arrow.next {
+  right: 18px;
+}
+
+.portfolio {
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+  font-family: Tinos, "Noto Sans SC", serif;
+}
+
+.portfolio-wrap {
+  width: min(1320px, calc(100% - 30px));
+  margin: 0 auto;
+  padding-top: calc(80px + 15px);
+}
+
+.portfolio-hero {
+  display: grid;
+  place-items: center;
+  height: 45vh;
+  min-height: 280px;
+  margin-top: 5em;
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+
+.portfolio-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.portfolio-hero div {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, 100%);
+  padding: 24px;
+}
+
+.portfolio-hero h1 {
+  margin: 0;
+  font-family: Tinos, "Noto Sans SC", serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: normal;
+}
+
+.portfolio-hero p {
+  margin: 18px 0 0;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.collection {
+  margin-top: 4.5rem;
+}
+
+.collection h2 {
+  margin: 0 0 0.4rem;
+  color: transparent;
+  font-family: Tinos, "Noto Sans SC", serif;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 400;
+  line-height: 1.2;
+  -webkit-text-stroke: 1px #1c1c1c;
+}
+
+.collection-note {
+  margin: 0 0 1.5rem;
+  color: #6b6b6b;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 16px;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work-card {
+  color: inherit;
+}
+
+.work-card figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 1em;
+  background: #111;
+  aspect-ratio: 16 / 9;
+}
+
+.work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.work-card:hover img {
+  transform: scale(1.04);
+}
+
+.work-card figcaption,
+.film-card {
+  position: relative;
+}
+
+.work-card figcaption::after,
+.film-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.work-card:hover figcaption::after,
+.film-card:hover .film-face::after {
+  opacity: 1;
+}
+
+.work-card h3,
+.film-card h3 {
+  margin: 14px 0 0;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.work-card p,
+.film-card p {
+  margin: 4px 0 0;
+  color: #6b6b6b;
+  font-size: 14px;
+}
+
+.film-face {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 180px;
+  color: #fff;
+  font-family: Tinos, serif;
+  font-size: 42px;
+}
+
+.work-page {
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+  padding: 120px 20px 60px;
+  font-family: Tinos, "Noto Sans SC", serif;
+}
+
+.work-page .frame {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.work-page img {
+  width: 100%;
+  border-radius: 24px;
+}
+
+.work-page h1 {
+  margin: 22px 0 8px;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.work-page p {
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.work-page a.back {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 800px) {
+  .work-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .home-copy {
+    left: 15px;
+    width: calc(100% - 30px);
+    text-align: center;
+  }
+
+  .home-title {
+    font-size: 4rem;
+    text-indent: 0;
+  }
+
+  .home-progress {
+    left: 64px;
+    right: 64px;
+    bottom: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-track,
+  .work-card img,
+  .work-card figcaption::after,
+  .film-face::after {
+    transition: none;
+  }
+}
