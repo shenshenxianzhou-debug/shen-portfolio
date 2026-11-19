@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { EMAIL, MAILTO } from "./asset";
 import { deskStills, skills, socials, software } from "./content";
 import { SkillIcon, SoftIcon } from "./icons";
+import { Link } from "./router";
 import "./cv.css";
 
 const packageMail = `mailto:${EMAIL}?subject=${encodeURIComponent("打包咨询")}`;
@@ -20,9 +21,9 @@ const softIcon: Record<string, string> = {
 const skillIcon = ["photo", "edit", "grade", "ai", "film", "direct", "event", "short"] as const;
 
 const links = [
-  { href: "#top", label: "Home | 主页" },
-  { href: "#gallery", label: "Portfolio | 作品集" },
-  { href: "#about", label: "About | 关于我", current: true },
+  { to: "/", label: "Home | 主页" },
+  { to: "/portfolio", label: "Portfolio | 作品集" },
+  { to: "/about", label: "About | 关于我", current: true },
 ];
 
 function useCopy(value: string) {
@@ -75,14 +76,14 @@ export function About() {
   return (
     <div className="cv" data-theme={theme}>
       <header className={`cv-header${compact ? " is-compact" : ""}`}>
-        <a className="cv-brand" href="#top">
+        <Link className="cv-brand" to="/">
           灵活的左撇子
-        </a>
+        </Link>
         <nav className="cv-nav" aria-label="主导航">
           {links.map((link) => (
-            <a key={link.href} href={link.href} aria-current={link.current ? "page" : undefined}>
+            <Link key={link.to} to={link.to} aria-current={link.current ? "page" : undefined}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="cv-tools">
@@ -112,9 +113,9 @@ export function About() {
       {menu ? (
         <nav className="cv-sheet" aria-label="主导航">
           {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setMenu(false)}>
+            <Link key={link.to} to={link.to} onClick={() => setMenu(false)}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       ) : null}
