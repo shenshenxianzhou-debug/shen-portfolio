@@ -1,5 +1,5 @@
 import { EMAIL, MAILTO, XINPIANCHANG } from "./asset";
-import { films, photos, socials } from "./content";
+import { collectionSections, films, homeSlides, socials, works } from "./content";
 import { Link } from "./router";
 import { SiteHeader } from "./SiteHeader";
 import "./pages.css";
@@ -12,7 +12,7 @@ export function PortfolioPage() {
       <main>
         <div className="portfolio-wrap">
           <section className="portfolio-hero">
-            <img src={photos[0].thumb} alt="" />
+            <img src={homeSlides[0].full} alt="" />
             <div>
               <h1>PORTFOLIO | 作品集</h1>
               <p>用镜头讲述食物的故事</p>
@@ -37,31 +37,34 @@ export function PortfolioPage() {
             </ul>
           </section>
 
-          <section className="collection" id="projects">
-            <h2>Project Collection | 项目集</h2>
-            <p className="collection-note">已完成的美食摄影，共 {photos.length} 张。</p>
-            <ul className="work-grid">
-              {photos.map((photo, index) => {
-                const id = String(index + 1).padStart(2, "0");
-                return (
-                  <li key={photo.src}>
-                    <Link className="work-card" to={`/work/photo/${id}`}>
-                      <figure>
-                        <img src={photo.thumb} alt={photo.alt} />
-                      </figure>
-                      <h3>{photo.alt.split("，")[0]}</h3>
-                      <p>美食摄影</p>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-
-          <section className="collection" id="fragments">
-            <h2>Fragment Collection | 碎片集</h2>
-            <p className="collection-note">这一组还没有作品，之后上传。</p>
-          </section>
+          {collectionSections.map((section) => {
+            const items = works.filter((work) => work.category === section.category);
+            return (
+              <section className="collection" id={section.id} key={section.id}>
+                <h2>{section.heading}</h2>
+                <p className="collection-note">共 {items.length} 组。</p>
+                <ul className="work-grid">
+                  {items.map((work) => {
+                    const cover = work.images[0];
+                    return (
+                      <li key={work.id}>
+                        <Link className="work-card" to={`/work/photo/${work.id}`}>
+                          <figure>
+                            <picture>
+                              <source srcSet={cover.thumbWebp} type="image/webp" />
+                              <img src={cover.thumb} alt={work.title} loading="lazy" decoding="async" />
+                            </picture>
+                          </figure>
+                          <h3>{work.title}</h3>
+                          <p>{work.category}</p>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            );
+          })}
         </div>
 
         <div className="cv" id="contact">

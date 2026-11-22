@@ -74,7 +74,7 @@ html[data-theme="dark"] .collection h2 {
 }
 
 .home-title {
-  margin: 15px 0;
+  margin: 15px 0 32px;
   color: #fff;
   font-family: "Noto Sans SC", Tinos, sans-serif;
   font-size: 8vw;
@@ -260,6 +260,12 @@ html[data-theme="dark"] .collection h2 {
   aspect-ratio: 16 / 9;
 }
 
+.work-card picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .work-card img {
   width: 100%;
   height: 100%;
@@ -328,6 +334,23 @@ html[data-theme="dark"] .collection h2 {
 .work-page .frame {
   width: min(1100px, 100%);
   margin: 0 auto;
+}
+
+.work-page .shots {
+  display: grid;
+  gap: 18px;
+}
+
+.work-page .shots figure {
+  margin: 0;
+}
+
+.work-page .shots figcaption {
+  margin-top: 8px;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.72;
 }
 
 .work-page img {

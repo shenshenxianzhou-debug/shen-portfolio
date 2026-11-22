@@ -1,14 +1,13 @@
 import { XINPIANCHANG } from "./asset";
-import { films, photos } from "./content";
+import { films, workById } from "./content";
 import { Link } from "./router";
 import { SiteHeader } from "./SiteHeader";
 import "./pages.css";
 
 export function WorkPage({ kind, id }: { kind: "photo" | "film"; id: string }) {
   if (kind === "photo") {
-    const index = Number(id) - 1;
-    const photo = photos[index];
-    if (!photo) return <Missing />;
+    const work = workById(id);
+    if (!work) return <Missing />;
     return (
       <div className="work-page">
         <SiteHeader />
@@ -16,9 +15,16 @@ export function WorkPage({ kind, id }: { kind: "photo" | "film"; id: string }) {
           <Link className="back" to="/portfolio">
             返回作品集
           </Link>
-          <img src={photo.src} alt={photo.alt} />
-          <h1>{photo.alt.split("，")[0]}</h1>
-          <p>{photo.alt}</p>
+          <h1>{work.title}</h1>
+          <p>{work.category}</p>
+          <div className="shots">
+            {work.images.map((image) => (
+              <figure key={image.slug}>
+                <img src={image.full} alt={image.title} width={image.width} height={image.height} />
+                {image.title !== work.title ? <figcaption>{image.title}</figcaption> : null}
+              </figure>
+            ))}
+          </div>
         </article>
       </div>
     );

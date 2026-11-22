@@ -86,7 +86,7 @@ export function Gallery({ onOpen }: { onOpen: (index: number) => void }) {
             <span>把菜</span>
             <span>拍清楚</span>
           </h2>
-          <p>十七张实地拍下的菜品。点开看到原图。</p>
+          <p>点开看到原图。</p>
           <button type="button" className="pill" onClick={openFull}>
             进入画廊 <Arrow />
           </button>
