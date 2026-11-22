@@ -1,28 +1,24 @@
 import { useEffect, useState } from "react";
-import { photos } from "./content";
+import { homeSlides, type WorkCategory } from "./content";
 import { usePrefersReducedMotion } from "./ui";
 import { Link } from "./router";
 import { SiteHeader } from "./SiteHeader";
 import "./pages.css";
 
-const slides = [
-  {
-    id: "welcome",
-    kicker: "FOOD PHOTOGRAPHY & FILM",
-    title: "人间有味",
-    desc: "成都美食摄影师与导演，影像工作约九年。导演、摄影、剪辑、调色。",
-    image: photos[0],
-    to: "/portfolio",
-  },
-  ...photos.map((photo, index) => ({
-    id: `photo-${index + 1}`,
-    kicker: "美食摄影",
-    title: photo.alt.split("，")[0],
-    desc: photo.alt,
-    image: photo,
-    to: `/work/photo/${String(index + 1).padStart(2, "0")}`,
-  })),
-];
+const kicker: Record<WorkCategory, string> = {
+  菜品: "Dish | 菜品",
+  场景: "Scene | 场景",
+  饮品: "Drink | 饮品",
+};
+
+const slides = homeSlides.map((slide) => ({
+  id: slide.slug,
+  kicker: kicker[slide.category],
+  title: slide.title,
+  alt: slide.alt,
+  full: slide.full,
+  to: `/work/photo/${slide.workId}`,
+}));
 
 export function HomePage() {
   const reduce = usePrefersReducedMotion();
@@ -56,6 +52,12 @@ export function HomePage() {
     return () => window.removeEventListener("wheel", onWheel);
   }, [count, reduce]);
 
+  useEffect(() => {
+    const upcoming = slides[(index + 1) % count];
+    const preload = new Image();
+    preload.src = upcoming.full;
+  }, [index, count]);
+
   const current = slides[index];
 
   return (
@@ -63,19 +65,21 @@ export function HomePage() {
       <SiteHeader tone="overlay" />
       <section className="home-slider" aria-roledescription="carousel" aria-label="作品">
         <div className="home-track" style={{ transform: `translateX(-${index * 100}%)` }}>
-          {slides.map((slide) => (
+          {slides.map((slide, slideIndex) => (
             <article className="home-slide" key={slide.id} aria-hidden={slide.id !== current.id}>
-              <picture>
-                <source srcSet={slide.image.thumb} type="image/webp" />
-                <img src={slide.image.src} alt={slide.id === "welcome" ? "" : slide.image.alt} />
-              </picture>
+              <img
+                src={slide.full}
+                alt={slide.alt}
+                fetchPriority={slideIndex === 0 ? "high" : "auto"}
+                loading={slideIndex === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
             </article>
           ))}
         </div>
         <div className="home-copy">
           <p className="home-kicker">{current.kicker}</p>
           <h1 className="home-title">{current.title}</h1>
-          <p className="home-desc">{current.desc}</p>
           <Link className="home-go" to={current.to}>
             查看
           </Link>
